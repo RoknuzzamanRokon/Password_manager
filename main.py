@@ -7,7 +7,7 @@ from tkinter import *
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Password Manager")
-window.config(padx=20, pady=20, bg='red')
+window.config(padx=50, pady=50)
 
 # Import image..
 canvas = Canvas(width=200, height=200)
@@ -17,7 +17,7 @@ canvas.grid(row=1, column=2)
 
 
 # Create Label..
-label_1 = Label(padx=5, pady=5, text="website:")
+label_1 = Label(padx=5, pady=5, text="Website:")
 label_1.grid(row=2, column=1)
 
 
