@@ -9,12 +9,17 @@ def add_key():
     email = entry_2.get()
     password = entry_3.get()
 
-    messagebox.askyesno(title=website, message=f"These are the details entered:\nEmail:{email}\nPassword:{password}\n"
+    if len(website) and len(password) > 0:
+        message_box = messagebox.askyesno(title=website, message=f"These are the details entered:\nEmail:{email}\nPassword:{password}\n"
                                                f"Are you save the information?")
-    with open("data.txt", mode='a') as data_file:
-        data_file.write(f"{website} | {email} | {password}\n")
-        entry_1.delete(0, END)
-        entry_3.delete(0, END)
+    else:
+        messagebox.showerror(title="Error", message="This is empty.Pleas fill up all information.")
+
+    if message_box:
+        with open("data.txt", mode='a') as data_file:
+            data_file.write(f"{website} | {email} | {password}\n")
+            entry_1.delete(0, END)
+            entry_3.delete(0, END)
 
 
 # ---------------------------- UI SETUP ------------------------------- #
