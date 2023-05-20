@@ -26,12 +26,12 @@ def pass_generator():
     for i in range(1, int(nr_numbers / 2)):
         password += random.choice(symbols)
 
-    random.shuffle(password)
-    join_word = ''.join(password)
-
-    print(join_word)
-    # entry_3.config(text=join_word,width=31, highlightthickness=0)
-    entry_3.insert(0, string=join_word)
+    # random.shuffle(password)
+    # join_word = ''.join(password)
+    #
+    # print(join_word)
+    # # entry_3.config(text=join_word,width=31, highlightthickness=0)
+    # entry_3.insert(0, string=join_word)
 
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
