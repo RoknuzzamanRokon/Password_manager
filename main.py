@@ -1,5 +1,5 @@
 from tkinter import *
-
+from tkinter import messagebox
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 
@@ -8,6 +8,9 @@ def add_key():
     website = entry_1.get()
     email = entry_2.get()
     password = entry_3.get()
+
+    messagebox.askyesno(title=website, message=f"These are the details entered:\nEmail:{email}\nPassword:{password}\n"
+                                               f"Are you save the information?")
     with open("data.txt", mode='a') as data_file:
         data_file.write(f"{website} | {email} | {password}\n")
         entry_1.delete(0, END)
