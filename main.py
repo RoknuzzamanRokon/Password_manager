@@ -1,6 +1,37 @@
 from tkinter import *
 from tkinter import messagebox
+import random
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
+
+
+def pass_generator():
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+               'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+               'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+
+    nr_letters = len(entry_1.get())
+    nr_symbols = len(entry_2.get())
+    nr_numbers = len(entry_1.get())
+
+    password = []
+    for i in range(1, int(nr_letters / 2)):
+        password += random.choice(letters)
+
+    for i in range(1, int(nr_symbols / 3)):
+        password += random.choice(numbers)
+
+    for i in range(1, int(nr_numbers / 2)):
+        password += random.choice(symbols)
+
+    random.shuffle(password)
+    join_word = ''.join(password)
+
+    print(join_word)
+    # entry_3.config(text=join_word,width=31, highlightthickness=0)
+    entry_3.insert(0, string=join_word)
 
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
@@ -60,7 +91,7 @@ entry_3.grid(row=4, column=2)
 
 # Create Button.
 button_1 = Button()
-button_1.config(text="Generate Password")
+button_1.config(text="Generate Password", command=pass_generator)
 button_1.grid(row=4, column=3)
 
 button_2 = Button()
