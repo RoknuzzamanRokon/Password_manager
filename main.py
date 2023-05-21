@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import random
+import json
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
@@ -39,16 +40,26 @@ def add_key():
     website = entry_1.get()
     email = entry_2.get()
     password = entry_3.get()
+    new_date = {
+        website: {
+            "email": email,
+            "password": password
+        }
+    }
 
-    if len(website) and len(password) > 0:
-        message_box = messagebox.askyesno(title=website, message=f"These are the details entered:\n\nEmail: {email}\nPassword: {password}\n\n"
-                                               f"Are you save the information?")
-    else:
+    if len(website) == 0 or len(password) == 0:
+        # message_box = messagebox.askyesno(title=website, message=f"These are the details entered:\n\nEmail: {email}\nPassword: {password}\n\n"
+        #                                        f"Are you save the information?")
+    # else:
         messagebox.showerror(title="Error", message="This is empty.Pleas fill up all information.")
 
-    if message_box:
-        with open("data.txt", mode='a') as data_file:
-            data_file.write(f"{website} | {email} | {password}\n")
+    # if message_box:
+    else:
+        with open("data.json", mode='w') as data_file:
+            json.dump(new_date, data_file,indent=4)
+
+
+            # data_file.write(f"{website} | {email} | {password}\n")
             entry_1.delete(0, END)
             entry_3.delete(0, END)
 
