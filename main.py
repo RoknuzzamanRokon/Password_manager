@@ -56,10 +56,14 @@ def add_key():
     # if message_box:
     else:
         with open("data.json", mode='r') as data_file:
-            # json.dump(new_date, data_file, indent=4)
+            # Read the json file.
             read_json = json.load(data_file)
-            print(read_json)
-            print(type(read_json))
+            # Update a json file.
+            read_json.update(new_date)
+            # write a json file.
+            json.dump(new_date, data_file, indent=4)
+
+
 
 
             # data_file.write(f"{website} | {email} | {password}\n")
