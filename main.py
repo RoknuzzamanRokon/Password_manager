@@ -16,15 +16,19 @@ def pass_generator():
     nr_symbols = len(entry_2.get())
     nr_numbers = len(entry_1.get())
 
-    password = []
-    for i in range(1, int(nr_letters / 2)):
-        password += random.choice(letters)
+    # password = []
+    # for i in range(1, int(nr_letters / 2)):
+    #     password += random.choice(letters)
+    #
+    # for i in range(1, int(nr_symbols / 3)):
+    #     password += random.choice(numbers)
+    #
+    # for i in range(1, int(nr_numbers / 2)):
+    #     password += random.choice(symbols)
 
-    for i in range(1, int(nr_symbols / 3)):
-        password += random.choice(numbers)
-
-    for i in range(1, int(nr_numbers / 2)):
-        password += random.choice(symbols)
+    password = [random.choice(letters) for i in range(1, int(nr_letters / 2))]
+    password += [random.choice(numbers) for i in range(1, int(nr_symbols / 3))]
+    password += [random.choice(symbols) for i in range(1, int(nr_numbers / 2))]
 
     random.shuffle(password)
     join_word = ''.join(password)
