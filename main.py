@@ -41,7 +41,7 @@ def add_key():
     password = entry_3.get()
 
     if len(website) and len(password) > 0:
-        message_box = messagebox.askyesno(title=website, message=f"These are the details entered:\nEmail:{email}\nPassword:{password}\n"
+        message_box = messagebox.askyesno(title=website, message=f"These are the details entered:\n\nEmail: {email}\nPassword: {password}\n\n"
                                                f"Are you save the information?")
     else:
         messagebox.showerror(title="Error", message="This is empty.Pleas fill up all information.")
