@@ -52,6 +52,28 @@ def add_key():
             entry_1.delete(0, END)
             entry_3.delete(0, END)
 
+# ---------------------------- Search Button ------------------------------- #
+def search_button_function():
+    website = entry_1.get()
+
+    try:
+        with open("data.json") as read_file:
+            data = json.load(read_file)
+
+    except FileNotFoundError:
+        messagebox.showinfo(title="error",message=f"No data found.")
+
+    else:
+        if website in data:
+            data_email = data[website]["email"]
+            data_password = data[website]["password"]
+
+            messagebox.showinfo(title="check info", message=f"This website information has already saved.\n"
+                                                            f"email:{data_email}"
+                                                            f"password:{data_password}")
+        else:
+            messagebox.showinfo(title="Error", message=f"No details for {website} exists.")
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
