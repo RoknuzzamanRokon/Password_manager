@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import random
+import json
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
@@ -40,15 +41,51 @@ def add_key():
     email = entry_2.get()
     password = entry_3.get()
 
-    if len(website) and len(password) > 0:
-        message_box = messagebox.askyesno(title=website, message=f"These are the details entered:\n\nEmail: {email}\nPassword: {password}\n\n"
-                                               f"Are you save the information?")
-    else:
+    new_date = {
+        website: {
+            "email": email,
+            "password": password
+        }
+    }
+
+    if len(website) == 0 or len(password) == 0:
+
         messagebox.showerror(title="Error", message="This is empty.Pleas fill up all information.")
 
-    if message_box:
-        with open("data.txt", mode='a') as data_file:
-            data_file.write(f"{website} | {email} | {password}\n")
+    # else:
+    #     # with open("data01.json", mode='w') as file:
+    #     #     json.dump(new_date,file,indent=4)
+    #
+    #     with open("data01.json", mode='r') as read_data:
+    #         r_data = json.load(read_data)
+    #
+    #         r_data.update(new_date)
+    #
+    #     with open("data01.json", mode='w') as write_date:
+    #         json.dump(r_data, write_date, indent=4)
+    #
+    #     entry_1.delete(0, END)
+    #     entry_3.delete(0, END)
+
+    else:
+        try:
+            with open("data.json", mode='r') as data_file:
+                # Read the json file.
+                read_json = json.load(data_file)
+
+        except FileNotFoundError:
+            with open("data.json", mode="w") as data_file:
+                # write a json file.
+                json.dump(new_date, data_file, indent=4)
+
+        else:
+            # Update a json file.
+            read_json.update(new_date)
+            with open("data.json", mode="w") as data_file:
+                # write a json file.
+                json.dump(read_json, data_file, indent=4)
+
+        finally:
             entry_1.delete(0, END)
             entry_3.delete(0, END)
 
@@ -58,11 +95,11 @@ def search_button_function():
     website = entry_1.get()
 
     try:
-        with open("data.json") as read_file:
+        with open("data.json", mode='r') as read_file:
             data = json.load(read_file)
 
     except FileNotFoundError:
-        messagebox.showinfo(title="error",message=f"No data found.")
+        messagebox.showinfo(title="error", message=f"No data found.")
 
     else:
         if website in data:
@@ -70,7 +107,7 @@ def search_button_function():
             data_password = data[website]["password"]
 
             messagebox.showinfo(title="check info", message=f"This website information has already saved.\n"
-                                                            f"email:{data_email}"
+                                                            f"email:{data_email}\n"
                                                             f"password:{data_password}")
         else:
             messagebox.showinfo(title="Error", message=f"No details for {website} exists.")
@@ -122,8 +159,8 @@ button_2.config(text="Add", width=42, command=add_key)
 button_2.grid(row=5, column=2, columnspan=2)
 
 search_button = Button()
-search_button.config(text="Search", width=14)
-search_button.grid(row=2, column=3,columnspan=2)
+search_button.config(text="Search", width=14, command=search_button_function)
+search_button.grid(row=2, column=3, columnspan=2)
 
 
 window.mainloop()
