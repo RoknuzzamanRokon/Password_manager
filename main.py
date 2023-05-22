@@ -5,7 +5,6 @@ import json
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
-
 def pass_generator():
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
                'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
@@ -77,6 +76,11 @@ def add_key():
             entry_3.delete(0, END)
 
 
+# ---------------------------- Search Button ------------------------------- #
+def search_button_function():
+    with open("data.json", mode='r') as read_file:
+        if read_file["website"] == entry_1.get():
+            print("something")
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Password Manager")
