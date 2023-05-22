@@ -47,12 +47,9 @@ def add_key():
     }
 
     if len(website) == 0 or len(password) == 0:
-        # message_box = messagebox.askyesno(title=website, message=f"These are the details entered:\n\nEmail: {email}\nPassword: {password}\n\n"
-        #                                        f"Are you save the information?")
-    # else:
+
         messagebox.showerror(title="Error", message="This is empty.Pleas fill up all information.")
 
-    # if message_box:
     else:
         try:
             with open("data.json", mode='r') as data_file:
@@ -62,7 +59,7 @@ def add_key():
         except FileNotFoundError:
             with open("data.json", mode="w") as data_file:
                 # write a json file.
-                json.dump(read_json, data_file, indent=4)
+                json.dump(new_date, data_file, indent=4)
 
         else:
             # Update a json file.
@@ -78,9 +75,26 @@ def add_key():
 
 # ---------------------------- Search Button ------------------------------- #
 def search_button_function():
-    with open("data.json", mode='r') as read_file:
-        if read_file["website"] == entry_1.get():
-            print("something")
+    website = entry_1.get()
+
+    try:
+        with open("data.json", mode='r') as read_file:
+            data = json.load(read_file)
+
+    except FileNotFoundError:
+        messagebox.showinfo(title="error",message=f"No data found.")
+
+    else:
+        if website in data:
+            data_email = data[website]["email"]
+            data_password = data[website]["password"]
+
+            messagebox.showinfo(title="check info", message=f"This website information has already saved.\n"
+                                                            f"email:{data_email}"
+                                                            f"password:{data_password}")
+        else:
+            messagebox.showinfo(title="Error", message=f"No details for {website} exists.")
+
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Password Manager")
@@ -128,7 +142,7 @@ button_2.grid(row=5, column=2, columnspan=2)
 
 
 search_button = Button()
-search_button.config(text="Search", width=14)
+search_button.config(text="Search", width=14, command=search_button_function)
 search_button.grid(row=2, column=3, columnspan=2)
 
 window.mainloop()
