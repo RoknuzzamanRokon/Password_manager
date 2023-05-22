@@ -3,6 +3,7 @@ from tkinter import messagebox
 import random
 import json
 
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 def pass_generator():
@@ -35,21 +36,62 @@ def pass_generator():
 
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
+# def add_key():
+#     website = entry_1.get()
+#     email = entry_2.get()
+#     password = entry_3.get()
+#     new_date = {
+#         website: {
+#             "email": email,
+#             "password": password
+#         }
+#     }
+#
+#     if len(website) == 0 or len(password) == 0:
+#
+#         messagebox.showerror(title="Error", message="This is empty.Pleas fill up all information.")
+#
+#     else:
+#         try:
+#             with open("data.json", 'r') as data_file:
+#                 # Read the json file.
+#                 read_json = json.load(data_file)
+#
+#         except FileNotFoundError:
+#             with open("data.json", mode="w") as data_file:
+#                 # write a json file.
+#                 json.dump(read_json, data_file, indent=4)
+#
+#         else:
+#             # Update a json file.
+#             read_json.update(new_date)
+#             with open("data.json", mode="w") as data_file:
+#                 # write a json file.
+#                 json.dump(read_json, data_file, indent=4)
+#
+#         finally:
+#             entry_1.delete(0, END)
+#             entry_3.delete(0, END)
+
 def add_key():
     website = entry_1.get()
     email = entry_2.get()
     password = entry_3.get()
+
     new_date = {
         website: {
             "email": email,
-            "password": password
+            "password": password,
         }
     }
 
     if len(website) == 0 or len(password) == 0:
-
+        # message_box = messagebox.askyesno(title=website, message=f"These are the details entered:\n\nEmail: {email}\nPassword: {password}\n\n"
+        #                                        f"Are you save the information?")
+    # else:
         messagebox.showerror(title="Error", message="This is empty.Pleas fill up all information.")
 
+    # if message_box:
     else:
         try:
             with open("data.json", mode='r') as data_file:
@@ -59,7 +101,7 @@ def add_key():
         except FileNotFoundError:
             with open("data.json", mode="w") as data_file:
                 # write a json file.
-                json.dump(new_date, data_file, indent=4)
+                json.dump(read_json, data_file, indent=4)
 
         else:
             # Update a json file.
@@ -78,7 +120,7 @@ def search_button_function():
     website = entry_1.get()
 
     try:
-        with open("data.json", mode='r') as read_file:
+        with open("data.json") as read_file:
             data = json.load(read_file)
 
     except FileNotFoundError:
@@ -94,6 +136,7 @@ def search_button_function():
                                                             f"password:{data_password}")
         else:
             messagebox.showinfo(title="Error", message=f"No details for {website} exists.")
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
