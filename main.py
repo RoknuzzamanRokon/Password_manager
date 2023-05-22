@@ -100,9 +100,9 @@ label_3.grid(row=4, column=1)
 
 # Create Entry.
 entry_1 = Entry()
-entry_1.config(width=50, highlightthickness=0)
+entry_1.config(width=32, highlightthickness=0)
 entry_1.focus()
-entry_1.grid(row=2, column=2, columnspan=2)
+entry_1.grid(row=2, column=2, columnspan=1)
 
 entry_2 = Entry()
 entry_2.config(width=50, highlightthickness=0)
@@ -110,7 +110,7 @@ entry_2.insert(0, "rokon.ali@gmail.com")
 entry_2.grid(row=3, column=2, columnspan=2)
 
 entry_3 = Entry()
-entry_3.config(width=31, highlightthickness=0)
+entry_3.config(width=32, highlightthickness=0)
 entry_3.grid(row=4, column=2)
 
 # Create Button.
@@ -122,5 +122,9 @@ button_2 = Button()
 button_2.config(text="Add", width=42, command=add_key)
 button_2.grid(row=5, column=2, columnspan=2)
 
+
+search_button = Button()
+search_button.config(text="Search", width=14)
+search_button.grid(row=2, column=3, columnspan=2)
 
 window.mainloop()
