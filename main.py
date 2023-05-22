@@ -101,7 +101,7 @@ def add_key():
         except FileNotFoundError:
             with open("data.json", mode="w") as data_file:
                 # write a json file.
-                json.dump(read_json, data_file, indent=4)
+                json.dump(new_date, data_file, indent=4)
 
         else:
             # Update a json file.
