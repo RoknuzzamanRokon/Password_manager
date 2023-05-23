@@ -3,13 +3,13 @@ from tkinter import messagebox
 import random
 import json
 
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
-
 def pass_generator():
-    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-               'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
-               'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+               'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+               'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
@@ -106,9 +106,9 @@ def search_button_function():
             data_email = data[website]["email"]
             data_password = data[website]["password"]
 
-            messagebox.showinfo(title="check info", message=f"This website information has already saved.\n"
-                                                            f"email:{data_email}\n"
-                                                            f"password:{data_password}")
+            messagebox.showinfo(title="check info", message=f"This website information has already saved.\n\n"
+                                                            f"email: {data_email}\n"
+                                                            f"password: {data_password}")
         else:
             messagebox.showinfo(title="Error", message=f"No details for {website} exists.")
 
